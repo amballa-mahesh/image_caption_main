@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    input[type=text], select {
+      width: 8%;
+      padding: 5px 10px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      box-sizing: border-box;
+    }
+    
+    input[type=submit] {
+      width: 10%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size = 20px;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+    
+    div {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }   
+    </style>
+  <body>
+<h2>Image Captioning</h2><br><br>
+
+
+
+<form action="{{ url_for('submit') }}" enctype="multipart/form-data" method="POST">
+  <input name="img" type="file"/><br><br><br>
+  <input type="submit" value="Generate"/>
+</form>
+
+<h3>Image Uploaded..</h3><img src="{{ img_path }}" alt="Image will be displayed here.." height="240px" width="300px">
+
+<h3 style = color:blue;>Image is captioned as - {{result}}</h3> 
+
+
+
+
+
+</body>
+</html>
