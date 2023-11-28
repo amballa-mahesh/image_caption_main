@@ -9,15 +9,17 @@ import os
 import PIL
 import numpy as np
 print('libraries loaded..')
+logging.info('libraries loaded..')
 
 
 
 tokenizer_trained = load(open("artifacts/data/tokenizer_vsc.p","rb"))
 print('tokenizer loaded...')
+logging.info('tokenizer loaded...')
 
-
-model_trained = load_model('artifacts/models/model_29.h5')
+model_trained = load_model('artifacts/models/model_100+3.h5')
 print('model trained loaded')
+logging.info('model trained loaded')
 
 model_xception = load_model('artifacts/models/model_xception.h5')
 print('model xception loaded')
@@ -40,7 +42,8 @@ def submit():
         img  = request.files['img'] 
         img = plt.imread(img)
         path = 'static/images/img_new.jpg'
-        plt.imsave(path,img)       
+        plt.imsave(path,img) 
+            
         caption = generate_caption_image(path,model_xception,model_trained,tokenizer_trained)
         return render_template('index.html',img_path = path,result = caption)
         
