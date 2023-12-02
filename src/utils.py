@@ -200,7 +200,7 @@ def generate_caption_image(url,model_xception,model_trained,tokenizer):
   
   
   
-def define_model(vocab_size,max_length):
+def define_model(vocab_size=6683,max_length=34):
 
   inputs1 = Input(shape = (2048,))
   fe1     = Dropout(0.25)(inputs1)

@@ -57,5 +57,5 @@ for i in range(epochs):
   model.fit(generator, epochs = 1,verbose = 1, steps_per_epoch=steps)
   print('epochs',i)
   logging.info('epochs',i)
-  model.save("artifacts/models/model_" +str(i)  + ".h5")
+model.save_weights("artifacts/models/model_" +str(i)  + ".h5")
 

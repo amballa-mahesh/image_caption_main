@@ -3,7 +3,7 @@ import logging
 from src.logger import logging
 from pickle import load
 from keras.models import load_model
-from src.utils import generate_caption_image
+from src.utils import generate_caption_image,define_model
 import matplotlib.pyplot as plt
 import os
 import PIL
@@ -17,7 +17,8 @@ tokenizer_trained = load(open("artifacts/data/tokenizer_vsc.p","rb"))
 print('tokenizer loaded...')
 logging.info('tokenizer loaded...')
 
-model_trained = load_model('artifacts/models/model_100+3.h5')
+model_trained = define_model()
+model_trained.load_weights('artifacts/models/model_weights+25.h5')
 print('model trained loaded')
 logging.info('model trained loaded')
 
