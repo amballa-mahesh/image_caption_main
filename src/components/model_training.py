@@ -8,6 +8,7 @@ from pickle import dump, load
 from keras.utils import to_categorical,pad_sequences,plot_model
 from keras.models import Model, load_model
 from keras.layers import Input, Dense,Add,LSTM, Embedding, Dropout,Layer
+from tensorflow.python.compiler.tensorrt import trt_convert as trt
 
 
 
@@ -49,13 +50,18 @@ print(c.shape)
 
 model = define_model(vocab_size,max_len)
 
-epochs = 100
-steps = 40455/64
+# epochs = 100
+# steps = 40455/64
 
-for i in range(epochs):
-  generator = data_generator(features, tokenized_caps, max_len, vocab_size)
-  model.fit(generator, epochs = 1,verbose = 1, steps_per_epoch=steps)
-  print('epochs',i)
-  logging.info('epochs',i)
-model.save_weights("artifacts/models/model_" +str(i)  + ".h5")
+# for i in range(epochs):
+#   generator = data_generator(features, tokenized_caps, max_len, vocab_size)
+#   model.fit(generator, epochs = 1,verbose = 1, steps_per_epoch=steps)
+#   print('epochs',i)
+#   logging.info('epochs',i)
+# model.save_weights("artifacts/models/model_" +str(i)  + ".h5")
+
+
+converter = trt.TrtGraphConverterV2(input_saved_model_dir='artifacts/models/model_78.h5')
+converter.convert()
+converter.save('artifacts/models/')
 

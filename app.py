@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import os
 import PIL
 import numpy as np
+from tensorflow.python.compiler.tensorrt import trt_convert as trt
 print('libraries loaded..')
 logging.info('libraries loaded..')
 
