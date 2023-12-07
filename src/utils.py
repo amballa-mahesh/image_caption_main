@@ -15,6 +15,7 @@ from keras.utils import plot_model
 from keras.models import Model, load_model
 from keras.layers import Input, Dense,Add
 from keras.layers import LSTM, Embedding, Dropout,Layer
+import requests
 
 logging.info('libraries loaded')
 
@@ -227,4 +228,11 @@ def define_model(vocab_size=6683,max_length=34):
 
   return model
 
+API_URL = "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-large"
+headers = {"Authorization": "Bearer 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"}
 
+def query_image(filename):
+    with open(filename, "rb") as f:
+        data = f.read()
+    response = requests.post(API_URL, headers=headers, data=data)
+    return response.json()
